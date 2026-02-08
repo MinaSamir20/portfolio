@@ -53,14 +53,17 @@ const Navbar = () => {
         <a href="#home" className="nav-logo" onClick={() => scrollToSection('home')}>
           Mina Samir
         </a>
-        
+
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           {navItems.map(item => (
             <li key={item.id} className="nav-item">
               <a
                 href={`#${item.id}`}
                 className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => {
+                  scrollToSection(item.id)
+                  setIsMenuOpen(false)
+                }}
               >
                 {item.label}
               </a>
@@ -70,8 +73,8 @@ const Navbar = () => {
 
         <div className="nav-right-section">
           <ThemeToggle />
-          
-          <div 
+
+          <div
             className={`hamburger ${isMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
